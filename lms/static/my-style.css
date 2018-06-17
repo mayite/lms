@@ -1,0 +1,44 @@
+body {
+  padding-top: 50px;
+}
+
+@media (max-width: 750px) {
+  .add-btn {
+    margin-top: 15px;
+  }
+}
+
+.table-toolbar {
+  margin-bottom: 15px;
+}
+/* 自定义左侧菜单栏开始*/
+.my-menu-item {
+  height: 45px;
+  margin-left: -20px;
+  margin-right: -20px;
+  background-color: #3d3d3d;
+  border-top: 1px solid #484848;
+}
+.my-menu-item:hover {
+  border-left: 3px solid red;
+  background-color: #303030;
+  cursor: pointer;
+}
+
+#my-menu a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  background-color: transparent;
+  cursor: pointer;
+  color: #d9d9d9;
+}
+#my-menu a:hover {
+ text-decoration: none;
+  color: white;
+}
+
+.nav-sidebar {
+  margin-bottom: 0;
+}
+/* 自定义左侧菜单栏结束*/

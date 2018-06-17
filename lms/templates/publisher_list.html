@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<!-- saved from url=(0041)http://v3.bootcss.com/examples/dashboard/ -->
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="http://v3.bootcss.com/favicon.ico">
+
+    <title>Dashboard</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/static/dashboard.css" rel="stylesheet">
+    <link href="/static/my-style.css" rel="stylesheet">
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#my-menu"
+                    aria-expanded="true"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://v3.bootcss.com/examples/dashboard/#">Project name</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse" aria-expanded="true" style="">
+            <ul class="nav navbar-nav">
+                <li><a href="http://v3.bootcss.com/examples/dashboard/#">Dashboard</a></li>
+                <li><a href="http://v3.bootcss.com/examples/dashboard/#">Settings</a></li>
+                <li><a href="http://v3.bootcss.com/examples/dashboard/#">Profile</a></li>
+                <li><a href="http://v3.bootcss.com/examples/dashboard/#">Help</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar collapse" id="my-menu">
+            <div class="my-menu-item" data-target="#menu-son1" data-toggle="collapse"><a>菜单一</a></div>
+            <ul class="nav nav-sidebar collapse" id="menu-son1">
+                <li><a href="http://v3.bootcss.com/examples/dashboard/#">Overview</a></li>
+                <li><a href="http://v3.bootcss.com/examples/dashboard/#">Reports</a></li>
+                <li><a href="http://v3.bootcss.com/examples/dashboard/#">Analytics</a></li>
+                <li><a href="http://v3.bootcss.com/examples/dashboard/#">Export</a></li>
+            </ul>
+            <div class="my-menu-item" href="#menu-son2" data-toggle="collapse"><a>菜单二</a></div>
+            <ul class="nav nav-sidebar collapse" id="menu-son2">
+                <li><a href="http://v3.bootcss.com/examples/dashboard/">Nav item</a></li>
+                <li><a href="http://v3.bootcss.com/examples/dashboard/">Nav item again</a></li>
+                <li><a href="http://v3.bootcss.com/examples/dashboard/">One more nav</a></li>
+                <li><a href="http://v3.bootcss.com/examples/dashboard/">Another nav item</a></li>
+                <li><a href="http://v3.bootcss.com/examples/dashboard/">More navigation</a></li>
+            </ul>
+            <div class="my-menu-item" href="#menu-son3" data-toggle="collapse"><a>菜单三</a></div>
+            <ul class="nav nav-sidebar collapse" id="menu-son3">
+                <li><a href="http://v3.bootcss.com/examples/dashboard/">Nav item again</a></li>
+                <li><a href="http://v3.bootcss.com/examples/dashboard/">One more nav</a></li>
+                <li><a href="http://v3.bootcss.com/examples/dashboard/">Another nav item</a></li>
+            </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">图书信息管理系统</h1>
+
+            <!-- 面板开始 -->
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">出版社管理</h3>
+                </div>
+                <div class="panel-body">
+                    <!--表格 工具栏 开始-->
+                    <div class="row table-toolbar">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+                            </div><!-- /input-group -->
+                        </div><!-- /.col-lg-6 -->
+
+                        <div class="col-md-3 col-sm-6 pull-right add-btn">
+                            <button data-target="#myModal" data-toggle="modal" class="btn btn-success pull-right">新增
+                            </button>
+                            <a href="/add_publisher/" class="btn btn-info pull-right">新页面添加
+                            </a>
+                        </div>
+
+                    </div>
+                    <!--表格 工具栏 结束-->
+
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>出版社名称</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for publisher in publisher_list %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ publisher.name }}</td>
+                                <td class="text-center">
+                                    <a class="btn btn-info btn-sm" href="/edit_publisher/?id={{ publisher.id }}"><i
+                                            class="fa fa-pencil fa-fw"
+                                            aria-hidden="true"></i>编辑
+                                    </a>
+                                    <a class="btn btn-danger btn-sm" href="/drop_publisher/?id={{ publisher.id }}"><i
+                                            class="fa fa-trash-o fa-fw"
+                                            aria-hidden="true"></i>删除
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+
+
+                        </tbody>
+                    </table>
+
+                    <!--分页 开始-->
+                    <div>
+                        <nav aria-label="Page navigation" class="pull-right">
+                            <ul class="pagination">
+                                <li>
+                                    <a href="#" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li>
+                                    <a href="#" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!--分页 结束-->
+                </div>
+            </div>
+            <!-- 面板 结束-->
+        </div>
+    </div>
+</div>
+<!--模态框开始-->
+<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">添加新信息</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-3 control-label">出版社名称</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="addr" class="col-sm-3 control-label">出版社地址</label>
+                        <div class="col-sm-9">
+                            <textarea id="addr" class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary">保存</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--模态框结束-->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="/static/jquery-3.3.1.min.js"></script>
+<script src="/static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+</body>
+</html>

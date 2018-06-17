@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/static/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="page-header ">
+            <h1 class="text-center">图书管理系统</h1>
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">编辑作者</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" action="/edit_author/?id={{ author.id }}" method="post">
+                            <input type="text" value="{{ author.id }}" name="author_id" class="hide">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-3 control-label">作者姓名</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="inputEmail3" name="name"
+                                           value="{{ author.name }}"
+                                           placeholder="作者姓名">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-3 control-label">著作</label>
+                                <div class="col-sm-9">
+                                    <select class="form-control" name="book_id" multiple>
+                                        {% for book in book_list %}
+                                            {# 如果 当前这本书 在 作者写的书里面 #}
+                                            {% if book in author.book.all %}
+                                                <option selected value="{{ book.id }}">{{ book.name }}</option>
+                                            {% else %}
+                                                <option value="{{ book.id }}">{{ book.name }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <button type="submit" class="btn btn-default">提交</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
